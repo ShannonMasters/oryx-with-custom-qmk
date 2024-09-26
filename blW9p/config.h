@@ -3,7 +3,9 @@
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
 
-#define QUICK_TAP_TERM 0
+#define TAPPING_TERM 175
+#define PERMISSIVE_HOLD
+#define QUICK_TAP_TERM_PER_KEY
 #define USB_SUSPEND_WAKEUP_DELAY 0
 
 #undef RGB_MATRIX_TIMEOUT

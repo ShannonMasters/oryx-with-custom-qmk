@@ -821,6 +821,29 @@ tap_dance_action_t tap_dance_actions[] = {
 
 // Custom QMK here
 
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t* record) {
+  // If you quickly hold a tap-hold key after tapping it, the tap action is
+  // repeated. Key repeating is useful e.g. for Vim navigation keys, but can
+  // lead to missed triggers in fast typing. Here, returning 0 means we
+  // instead want to "force hold" and disable key repeating.
+  switch (keycode) {
+    case KC_BSPC:
+    case KC_DEL:
+    case KC_ENT:
+    case KC_SPC:
+    case KC_TAB:
+
+    // Repeating is useful for Vim navigation keys.
+    case KC_H:
+    case KC_J:
+    case KC_K:
+    case KC_L:
+      return QUICK_TAP_TERM;  // Enable key repeating.
+    default:
+      return 0;  // Otherwise, force hold and disable key repeating.
+  }
+}
+
 void matrix_scan_user(void) {
   achordion_task();
 }
