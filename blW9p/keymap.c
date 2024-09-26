@@ -181,6 +181,8 @@ bool rgb_matrix_indicators_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_achordion(keycode, record)) { return false; }
+
   switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) {

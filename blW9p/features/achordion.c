@@ -335,31 +335,12 @@ __attribute__((weak)) bool achordion_chord(uint16_t tap_hold_keycode,
                                            keyrecord_t* tap_hold_record,
                                            uint16_t other_keycode,
                                            keyrecord_t* other_record) {
-
-  // Exceptionally consider the following chords as holds, even though they
-  // are on the same hand.
-  switch (tap_hold_keycode) {
-    case KC_S:
-      if (other_keycode == KC_B || other_keycode == KC_W) { return true; }
-      break;
-
-    case KC_V:
-      if (other_keycode == KC_P || other_keycode == KC_T || other_keycode == KC_D || other_keycode == KC_B) { return true; }
-      break;
-  }
-
-  // allow hold bottom row
-  if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) >= 3) { return true; }
-
-  // allow other key on bottom row
-  if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 3) { return true; }
-
   return achordion_opposite_hands(tap_hold_record, other_record);
 }
 
 // By default, the timeout is 1000 ms for all keys.
 __attribute__((weak)) uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-  return 500;
+  return 1000;
 }
 
 // By default, Shift and Ctrl mods are eager, and Alt and GUI are not.
