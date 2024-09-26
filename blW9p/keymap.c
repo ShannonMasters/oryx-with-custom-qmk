@@ -1,3 +1,5 @@
+#include "features/achordion.h"
+
 #include QMK_KEYBOARD_H
 #include "version.h"
 #define MOON_LED_LEVEL LED_LEVEL
@@ -811,3 +813,12 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_14] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_14, dance_14_finished, dance_14_reset),
         [DANCE_15] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_15, dance_15_finished, dance_15_reset),
 };
+
+
+
+
+// Custom QMK here
+
+void matrix_scan_user(void) {
+  achordion_task();
+}
