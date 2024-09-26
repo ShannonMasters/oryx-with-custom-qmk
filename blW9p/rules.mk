@@ -16,3 +16,4 @@ LAYER_LOCK_ENABLE = yes
 
 # Custom QMK here
 SRC += features/achordion.c
+SRC += features/socd_cleaner.c

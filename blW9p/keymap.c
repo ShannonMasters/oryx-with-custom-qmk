@@ -1,3 +1,8 @@
+#include "features/socd_cleaner.h"
+
+socd_cleaner_t socd_v = {{KC_W, KC_S}, SOCD_CLEANER_LAST};
+socd_cleaner_t socd_h = {{KC_A, KC_D}, SOCD_CLEANER_LAST};
+
 #include "features/achordion.h"
 
 #include QMK_KEYBOARD_H
@@ -181,6 +186,9 @@ bool rgb_matrix_indicators_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_socd_cleaner(keycode, record, &socd_v)) { return false; }
+  if (!process_socd_cleaner(keycode, record, &socd_h)) { return false; }
+
   if (!process_achordion(keycode, record)) { return false; }
 
   switch (keycode) {
@@ -846,4 +854,9 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t* record) {
 
 void matrix_scan_user(void) {
   achordion_task();
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+  socd_cleaner_enabled = IS_LAYER_ON_STATE(state, 6);
+  return state;
 }
