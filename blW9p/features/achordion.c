@@ -353,11 +353,11 @@ __attribute__((weak)) bool achordion_chord(uint16_t tap_hold_keycode,
   }
 
   // allow tap holding thumb keys
-  if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) >= 3) {
+  if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) >= 5) {
     return true;
   }
   // allow other key to be held if it's a thumb key
-  if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 3) {
+  if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 5) {
     return true;
   }
 
